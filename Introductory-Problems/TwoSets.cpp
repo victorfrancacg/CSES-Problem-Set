@@ -26,56 +26,43 @@ using namespace std;
 #define fastio ios_base::sync_with_stdio(false), cin.tie(nullptr)
 
 void solve() {
-    ll n; cin >> n;
-    ll soma = (n + 1) * n / 2;
-    if(soma % 2) {
-        cout << "NO" << endl;
-    } else {
-        if(n % 2) {
-            cout << n / 2 << endl;
-            cout << n << " ";
-            ll lim = n;
-            ll i = 1;
-            ll duplas = n / 2;
-            while(i <= duplas / 2) {
-                cout << i << " " << lim - i << " ";
-                i++;
-            }
-            cout << endl;
-            cout << n / 2 + 1 << endl;
-            while(i <= duplas) {
-                cout << i << " " << lim - i << " ";
-                i++;
-            }
-            cout << endl;
+	ll n; cin >> n;
 
-        } else {
-            cout << n / 2 << endl;
-            ll lim = n + 1;
-            ll i = 1;
-            while(i <= n / 4) {
-                cout << i << " " << lim - i << " ";
-                i++;
-            }
-            cout << endl;
-            cout << n / 2 << endl;
-            while(i <= n / 2) {
-                cout << i << " " << lim - i << " ";
-                i++;
-           }
-           cout << endl;
-        }
+    ll sum = ((n + 1) * n) / 2;
+
+    if(sum % 2) {cout << "NO" << endl; return;}
+    
+    ll ref = n;
+    vector<bool> nums(n + 1, 1);
+
+    sum /= 2;
+
+    while(ref > 0) {
+        nums[ref] = 0;
+        sum -= ref;
+        if(sum < ref) {nums[sum] = 0; break;}
+        ref--;
     }
+
+    vi a, b;
+
+    rep(i, 1, n + 1) {
+        if(nums[i]) a.pb(i);
+        else b.pb(i);
+    }
+
+    cout << "YES" << endl;
+    cout << a.size() << endl;
+    rep0(i, a.size()) cout << a[i] << " ";
+    cout << endl;
+    cout << b.size() << endl;
+    rep0(i, b.size()) cout << b[i] << " ";
+    cout << endl;
 }
 
 int main() {
     fastio;
-    int t = 1;
-    //cin >> t;
-    while(t--) {
-	    solve();
-    }
-
+    solve();
     return 0;
 }
 
