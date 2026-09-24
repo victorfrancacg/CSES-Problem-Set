@@ -47,16 +47,15 @@ void solve() {
         mat[i] = s;
     }
     vector<vector<bool>> vis(n, vector<bool>(m, false));
-    rep0(i, n) {
-        rep0(j, m) {
-            if(mat[i][j] == '.' && !vis[i][j]) {
+    for(int i = 0; i < n; i++) {
+		for(int j = 0; j < m; j++) {
+			if(mat[i][j] == '.' && !vis[i][j]) {
                 visita(i, j, vis, mat);
                 out++;
             } 
         }
     }
-    cout << out << endl;
- 
+    cout << out << endl; 
 }
  
 int main() {
